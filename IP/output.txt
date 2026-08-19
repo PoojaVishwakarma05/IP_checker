@@ -1,0 +1,5 @@
+172.19.232.100 is alive
+127.0.0.1 is alive
+192.168.81.22 is not alive
+192.168.81.18 is not alive
+192.168.82.100 is not alive
