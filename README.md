@@ -1,31 +1,65 @@
-# ACCIO - Concurrent IP Checker
+ACCIO – Concurrent IP Checker
+ACCIO is a Bash script that checks if a list of IP addresses or hostnames are reachable. It was built as a practice project to learn about Linux process management, background execution, PID handling, and concurrency control.
 
-ACCIO is a Bash-based concurrent IP availability checker designed to practice and demonstrate Linux process management, Bash scripting, background execution, PID handling, and concurrency control.
+Features:
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Read IPs/hosts from an input file
 
-## Features
+Check availability using ICMP ping
 
-- Read IP addresses from an input file
-- Check IP availability using ICMP `ping`
-- Run multiple ping operations concurrently
-- Configurable concurrency using `-c`
-- Track background processes using PIDs
-- Wait for background processes using `wait`
-- Display whether each IP is alive or not alive
-- Save scan results to an output file
-- Simple command-line interface
-- Help/usage option
+Run multiple checks at the same time (concurrency)
 
-## Requirements
+Control concurrency with -c option
 
-- Linux / WSL
-- Bash
-- `ping`
-- `figlet`
-- `lolcat`
+Track background processes with PIDs
 
-On Ubuntu/WSL, install the required packages with:
+Wait for jobs to finish using wait
 
-```bash
+Show results: “is alive” or “is not alive”
+
+Save results to an output file
+
+Simple command‑line interface with -h/--help
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Requirements:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Linux or WSL or vm with ubuntu guest os
+
+Bash
+
+ping (from iputils)
+
+Optional: figlet and lolcat for a colorful banner
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Install dependencies (Ubuntu/WSL)
+
 sudo apt update
-sudo apt install iputils-ping figlet lolcat -y
+sudo apt install -y iputils-ping figlet lolcat
 
+Usage
+./accio.sh -i ips.txt -o results.txt -c 10
+here,
+-i FILE → input file with IPs/hosts
+
+-o FILE → output file for results
+
+-c NUMBER → number of concurrent checks (default: 10)
+
+-h or --help → show usage
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Example of input file:
+ips.txt --->>
+8.8.8.8
+1.1.1.1  # cloudflare
+example.com
+
+To execute the script:--->
+./accio.sh -i ips.txt -o results.txt -c 5
+
+Exppected Output:
+8.8.8.8 is alive
+1.1.1.1 is not alive
+example.com is alive  
